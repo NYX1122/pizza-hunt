@@ -8,10 +8,13 @@ const ReplySchema = new Schema(
             default: () => new Types.ObjectId()
         },
         replyBody: {
-            type: String
+            type: String,
+            required: 'Your reply needs text before you can post it!',
+            trim: true
         },
         writtenBy: {
-            type: String
+            type: String,
+            required: true,
         },
         createdAt: {
             type: Date,
@@ -29,10 +32,13 @@ const ReplySchema = new Schema(
 const CommentSchema = new Schema(
     {
         writtenBy: {
-            type: String
+            type: String,
+            required: true,
         },
         commentBody: {
-            type: String
+            type: String,
+            required: 'Your comment needs text before you can post it!',
+            trim: true
         },
         replies: [ReplySchema],
         createdAt: {
